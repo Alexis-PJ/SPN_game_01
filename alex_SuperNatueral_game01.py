@@ -6,6 +6,7 @@ from os import path
 
 img_dir = path.join(path.dirname('alex_SN_road.png'),'alex_images')
 
+
 os.environ['SDL_VIDEO_WINDOW_POS'] = '500,30'
 WIDTH = 480
 HEIGHT = 700
@@ -93,7 +94,8 @@ class Bullet(pygame.sprite.Sprite):
 
 
 background = pygame.image.load(path.join(img_dir, 'alex_SN_road.png')).convert()
-background_rect = background.get_rect()
+bcgtest = pygame.transform.rotozoom(background, 0, .499).convert()
+background_rect = bcgtest.get_rect()
 all_sprites = pygame.sprite.Group()
 
 mobs = pygame.sprite.Group()
@@ -136,7 +138,7 @@ while running:
 
     # Draw / render
     screen.fill(BLACK)
-    screen.blit(background, background_rect)
+    screen.blit(bcgtest, background_rect)
     all_sprites.draw(screen)
     # *after* drawing everything, flip the display
     pygame.display.flip()
