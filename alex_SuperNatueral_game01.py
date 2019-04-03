@@ -77,8 +77,8 @@ class Mob(pygame.sprite.Sprite):
 class Bullet(pygame.sprite.Sprite):
     def __init__(self, x, y):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.Surface((10, 20))
-        self.image.fill(YELLOW)
+        self.image = bullet_img
+        self.image.set_colorkey(BLACK)
         self.rect = self.image.get_rect()
         self.rect.bottom = y
         self.rect.centerx = x
@@ -91,13 +91,14 @@ class Bullet(pygame.sprite.Sprite):
             self.kill()
 
 # Load all game graphics
-
-
 background = pygame.image.load(path.join(img_dir, 'alex_SN_road.png')).convert()
 bcgtest = pygame.transform.rotozoom(background, 0, .499).convert()
 background_rect = bcgtest.get_rect()
-all_sprites = pygame.sprite.Group()
+bullet = pygame.image.load(path.join(img_dir, '45-auto.png')).convert()
+bullet_img = pygame.transform.rotozoom(bullet, 90, .1).convert()
 
+
+all_sprites = pygame.sprite.Group()
 mobs = pygame.sprite.Group()
 bullets = pygame.sprite.Group()
 player = Player()
